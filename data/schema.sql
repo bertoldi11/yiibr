@@ -48,9 +48,12 @@ DROP TABLE IF EXISTS `yiibr`.`hangouts` ;
 CREATE  TABLE IF NOT EXISTS `yiibr`.`hangouts` (
   `idHangouts` INT NOT NULL AUTO_INCREMENT ,
   `idUsuario` INT NOT NULL COMMENT 'Usuario que cadastrou o hangout' ,
-  `url` VARCHAR(150) NOT NULL ,
-  `acontecendo` CHAR(1) NOT NULL COMMENT 'S = Sim | N = Nao' ,
-  `youtube` VARCHAR(150) NULL COMMENT 'Link para o hangout gravado e hospedado no youtube.' ,
+  `url` VARCHAR(150) NOT NULL COMMENT 'url para se juntar ao hangout.' ,
+  `youtube` VARCHAR(150) NOT NULL COMMENT 'Link para o hangout no youtube.' ,
+  `titulo` VARCHAR(150) NOT NULL ,
+  `acontecendo` CHAR(1) NOT NULL COMMENT 'Hangout acontecendo no momento? S = Sim | N = Nao' ,
+  `dataCadastro` DATETIME NOT NULL ,
+  `dataHangout` DATETIME NULL ,
   PRIMARY KEY (`idHangouts`) ,
   INDEX `fk_hangouts_usuario1_idx` (`idUsuario` ASC) ,
   CONSTRAINT `fk_hangouts_usuario1`

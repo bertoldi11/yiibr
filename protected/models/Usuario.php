@@ -60,7 +60,9 @@ class Usuario extends CActiveRecord
 	{
 		parent::BeforeValidate();	
 		if($this->scenario == 'insert')
-			$this->dataCadastro = new CDbExpression('NOW()');
+		{
+			$this->dataCadastro = new CDbExpression('NOW()');			
+		}
 		return true;
 	}
 	
