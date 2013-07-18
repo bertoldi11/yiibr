@@ -24,6 +24,9 @@
 </head>
 
 <body>
+<div class="page-header" style="text-align: center;">
+	<h1><?php echo CHtml::image('/images/yiibr_logo_menor.png', 'Yii BR' );?> <small>Aprender YII nunca foi tão fácil.</small></h1>
+</div>
 <div>
 	<?php $this->widget('bootstrap.widgets.TbNavbar',array(
 			'brand' => 'YiiBr',

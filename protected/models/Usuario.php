@@ -17,6 +17,9 @@
  */
 class Usuario extends CActiveRecord
 {
+	//Chave de Encriptação da senha	
+	private $_chaveEncrypt = 'a%^4rasdf@(wS*';
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -72,8 +75,8 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idUsuario' => 'Id Usuario',
-			'idPerfil' => 'Id Perfil',
+			'idUsuario' => 'Cod. Usuario',
+			'idPerfil' => 'Perfil',
 			'nome' => 'Nome',
 			'email' => 'Email',
 			'senha' => 'Senha',
@@ -102,5 +105,10 @@ class Usuario extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function encrypt($value)
+	{		
+		return md5($this->_chaveEncrypt.$value);
 	}
 }

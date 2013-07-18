@@ -47,9 +47,10 @@ DROP TABLE IF EXISTS `yiibr`.`hangouts` ;
 
 CREATE  TABLE IF NOT EXISTS `yiibr`.`hangouts` (
   `idHangouts` INT NOT NULL AUTO_INCREMENT ,
-  `idUsuario` INT NOT NULL COMMENT ' /* comment truncated */ /*Usuario que cadastrou o hangout*/' ,
+  `idUsuario` INT NOT NULL COMMENT 'Usuario que cadastrou o hangout' ,
   `url` VARCHAR(150) NOT NULL ,
-  `acontecendo` CHAR(1) NOT NULL COMMENT ' /* comment truncated */ /*S = Sim | N = Nao*/' ,
+  `acontecendo` CHAR(1) NOT NULL COMMENT 'S = Sim | N = Nao' ,
+  `youtube` VARCHAR(150) NULL COMMENT 'Link para o hangout gravado e hospedado no youtube.' ,
   PRIMARY KEY (`idHangouts`) ,
   INDEX `fk_hangouts_usuario1_idx` (`idUsuario` ASC) ,
   CONSTRAINT `fk_hangouts_usuario1`
@@ -73,5 +74,14 @@ START TRANSACTION;
 USE `yiibr`;
 INSERT INTO `yiibr`.`perfil` (`idPerfil`, `nome`) VALUES (1, 'Administrador');
 INSERT INTO `yiibr`.`perfil` (`idPerfil`, `nome`) VALUES (2, 'Usuario');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `yiibr`.`usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `yiibr`;
+INSERT INTO `yiibr`.`usuario` (`idUsuario`, `idPerfil`, `nome`, `email`, `senha`, `dataCadastro`) VALUES (1, 1, 'Vinicius Bertoldi Rocha', 'bertoldi11@gmail.com', '9a9ce273cfe7e737b8ba2210cb33741c', '2013-07-18');
 
 COMMIT;
