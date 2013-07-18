@@ -4,10 +4,6 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit',array(
-    'heading'=>'Yiibr - Yii Framework Brasil',
-)); ?>
-<br><br><br>
-<p>Nenhum hangout acontencendo no momento.</p>
 
-<?php $this->endWidget(); ?>
+<iframe width="420" height="315" src="http://www.youtube.com/embed/UKTjzwYbSg8" frameborder="0" allowfullscreen></iframe>
+

@@ -1,17 +1,28 @@
 <?php
 $this->breadcrumbs=array(
-	'Perfils',
-);
-
-$this->menu=array(
-array('label'=>'Create Perfil','url'=>array('create')),
-array('label'=>'Manage Perfil','url'=>array('admin')),
+	'Perfil',
 );
 ?>
 
-<h1>Perfils</h1>
+<h1>Perfil</h1>
 
-<?php $this->widget('bootstrap.widgets.TbListView',array(
-'dataProvider'=>$dataProvider,
-'itemView'=>'_view',
-)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+<br><hr><br>
+
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+	'type'=>'striped',
+	'template'=>"{items}",
+	'dataProvider'=>$dataProvider,
+	'columns'=>array(
+		array('name'=> 'idPerfil', 'header'=>'Código'),
+		array('name'=> 'nome', 'header'=>'Nome'),
+		array(
+			'htmlOptions' => array('nowrap'=>'nowrap'),
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{update} {delete}',
+			'updateButtonUrl'=>'Yii::app()->createUrl("perfil/alterar", array("id"=>"$data->idPerfil"))',
+			'deleteButtonUrl'=>'Yii::app()->createUrl("perfil/delete", array("id"=>"$data->idPerfil"))',
+		)
+	),
+));?>

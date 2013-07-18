@@ -37,6 +37,9 @@
 						array('label'=>'Home', 'url'=>array('/site/index')),
 						array('label'=>'Blog', 'url'=>'http://yiibr.com.br/blog/'),
 						array('label'=>'Forum', 'url'=>'http://yiibr.com.br/forum/'),
+						array('label'=>'Perfil', 'url'=>array('/perfil/index'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Usuário', 'url'=>array('/usuario/index'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Hangouts', 'url'=>array('/hangouts/index'), 'visible'=>!Yii::app()->user->isGuest),
 						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					),
@@ -46,6 +49,15 @@
 	); ?>
 </div>
 <div class="container" id="page">
+	<?php
+		// Widget para exibir mensagens para o usuário.
+		$this->widget('bootstrap.widgets.TbAlert', array(
+		    'block'=>false, // display a larger alert block?
+		    'fade'=>true, // use transitions?
+		    'closeText'=>'×', // close link text - if set to false, no close link is displayed
+		));
+	?>
+
 	<!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(

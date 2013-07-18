@@ -55,6 +55,21 @@ class Usuario extends CActiveRecord
 			array('idUsuario, idPerfil, nome, email, senha, dataCadastro', 'safe', 'on'=>'search'),
 		);
 	}
+	
+	public function beforeValidate()
+	{
+		parent::BeforeValidate();	
+		if($this->scenario == 'insert')
+			$this->dataCadastro = new CDbExpression('NOW()');
+		return true;
+	}
+	
+	public function beforeSave()
+	{
+		parent::beforeSave();	
+		$this->senha = $this->encrypt($this->senha);
+		return true;
+	}
 
 	/**
 	 * @return array relational rules.
