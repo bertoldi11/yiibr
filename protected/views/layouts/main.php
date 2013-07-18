@@ -8,37 +8,44 @@
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+	
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/protected/ext/bootstrap/assets/css/bootstrap.min.css'); ?>
+	<!--
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	-->
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/base.css'); ?>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
-
-<div class="container" id="page">
-
-	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-	</div><!-- header -->
-
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Blog', 'url'=>'http://yiibr.com.br/blog/'),
-				array('label'=>'Forum', 'url'=>'http://yiibr.com.br/forum/'),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+<div>
+	<?php $this->widget('bootstrap.widgets.TbNavbar',array(
+			'brand' => 'YiiBr',
+			'items' => array(
+				array(
+					'class' => 'bootstrap.widgets.TbMenu',
+					'items' => array(
+						array('label'=>'Home', 'url'=>array('/site/index')),
+						array('label'=>'Blog', 'url'=>'http://yiibr.com.br/blog/'),
+						array('label'=>'Forum', 'url'=>'http://yiibr.com.br/forum/'),
+						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					),
+				),
 			),
-		)); ?>
-	</div><!-- mainmenu -->
+		)
+	); ?>
+</div>
+<div class="container" id="page">
+	<!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
@@ -46,14 +53,15 @@
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
 </div><!-- page -->
+
+<footer class="footer">
+	<div class="container">
+        <p class="copy">Copyright &copy; 2013 by <a target="_blank" href="https://groups.google.com/forum/?hl=pt-BR#!forum/yii-framework-brasil"> Yii Framework Brasil </a><br />
+        	All Rights Reserved.
+        </p>
+    </div>
+</footer>
 
 </body>
 </html>
