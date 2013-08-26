@@ -14,6 +14,8 @@ return array(
 		'log',
 		'bootstrap'
 	),
+	
+	'language' => 'pt_br',
 
 	// autoloading model and component classes
 	'import'=>array(
